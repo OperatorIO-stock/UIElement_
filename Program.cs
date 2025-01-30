@@ -5,7 +5,6 @@ class Program
     static void Main(string[] args)
     {
         int settingValuesBar;
-        string choosingBar;
 
         Console.WriteLine("Выберите размер бара");
         settingValuesBar = int.Parse(Console.ReadLine());
@@ -66,13 +65,13 @@ class Program
 
             Console.SetCursorPosition(x, y);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Health: {healthBar}");
+            Console.WriteLine($"Health: [{healthBar}]");
 
             Console.ResetColor();
 
             Console.SetCursorPosition(x, y);
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"Mana: {manaBar}");
+            Console.WriteLine($"Mana: [{manaBar}]");
 
             Console.ResetColor();
         }
