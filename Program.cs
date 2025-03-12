@@ -4,90 +4,113 @@ class Program
 {
     static void Main(string[] args)
     {
-        int settingValuesBar;
+        int maxValueBar = 10;
+        int healthBar = 0;
+        int manaBar = 0;
 
-        Console.WriteLine("Выберите размер бара");
-        settingValuesBar = int.Parse(Console.ReadLine());
+        bool waitAnswerUser = true;
 
-        RendererBar(settingValuesBar);
-    }
-    static void RendererBar(int settingValuesBar)
-    {
-        const string CommandRendererBarHealth = "H";
-        const string CommandRendererBarMana = "M";
+        ConsoleColor msgError = ConsoleColor.Red;
 
-        string healthBar = "";
-        string manaBar = "";
-
-        string choosingBar;
-
-        int totalLengthBar = 10;
-
-        int x = 100;
-        int y = 100;
-
-        char symbolBar = '#';
-
-        if (!ControlBarSize(settingValuesBar, totalLengthBar, out string errorMessage))
+        while(waitAnswerUser)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Error: {errorMessage}");
-            Console.ResetColor();
-        }
-        else
-        {
-            bool renderingProcessBar = true;
+            DrawBar(ref healthBar, maxValueBar, ConsoleColor.Green, msgError, '#', 0);
+            DrawBar(ref manaBar, maxValueBar, ConsoleColor.Blue, msgError, '@', 1);
 
-            while (renderingProcessBar)
+            Console.SetCursorPosition(0, 5);
+
+            Console.WriteLine("Выберите значение для бара Health (или 'q' для выхода): ");
+            string healthInput = Console.ReadLine();
+
+            if (healthInput.ToLower() == "q")
             {
-                Console.WriteLine("Выберите бар: 'M - mana' 'H - health'");
-                choosingBar = Console.ReadLine().ToUpper();
-
-                switch(choosingBar)
-                {
-                    case CommandRendererBarHealth:
-                        healthBar = new string(symbolBar, settingValuesBar);
-                        manaBar = new string(symbolBar, totalLengthBar);
-
-                        renderingProcessBar = false;
-                        break;
-                    case CommandRendererBarMana:
-                        manaBar = new string(symbolBar, settingValuesBar);
-                        healthBar = new string(symbolBar, totalLengthBar);
-
-                        renderingProcessBar = false;
-                        break;
-                    default:
-                        Console.WriteLine("Такого бара нет");
-                        break;
-                }
+                waitAnswerUser = false;
+                continue;
             }
 
-            Console.SetCursorPosition(x, y);
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Health: [{healthBar}]");
+            Console.WriteLine("Выберите значение для бара Mana (или 'q' для выхода): ");
+            string manaInput = Console.ReadLine();
 
-            Console.ResetColor();
+            if (manaInput.ToLower() == "q")
+            {
+                waitAnswerUser = false;
+                continue;
+            }
 
-            Console.SetCursorPosition(x, y);
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"Mana: [{manaBar}]");
+            try
+            {
+                healthBar = Convert.ToInt32(healthInput);
+                manaBar = Convert.ToInt32(manaInput);
 
-            Console.ResetColor();
+                string errorMessage = "";
+
+                if (!ControlSizeBar(healthBar, maxValueBar, ref errorMessage))
+                {
+                    Console.ForegroundColor = msgError;
+                    Console.WriteLine($"Ошибка Health: {errorMessage}");
+                    Console.ResetColor();
+                    healthBar = 0;
+                }
+
+                if (!ControlSizeBar(manaBar, maxValueBar, ref errorMessage))
+                {
+                    Console.ForegroundColor = msgError;
+                    Console.WriteLine($"Ошибка Mana: {errorMessage}");
+                    Console.ResetColor();
+                    manaBar = 0;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.ForegroundColor = msgError;
+                Console.WriteLine("Ошибка: Введено некорректное значение. Используйте только числа.");
+                Console.ResetColor();
+            }
+
+            Console.ReadLine();
+            Console.Clear();
         }
     }
-    static bool ControlBarSize(int settingValuesBar, int totalLenghtBar, out string errorMessage)
-    {
-        errorMessage = string.Empty;
 
-        if (settingValuesBar > totalLenghtBar)
+    static void DrawBar(ref int valueBar, int maxValueBar, ConsoleColor colorBar, ConsoleColor msgError, char symbolBar, int position)
+    {
+        string bar = "";
+
+        ConsoleColor defaultColor = Console.BackgroundColor;
+
+        for (int i = 0; i < valueBar; i++)
         {
-            errorMessage = $"Размер бара слишком большой и не должен превышать {totalLenghtBar}";
+            bar += symbolBar;
+        }
+
+        Console.SetCursorPosition(0, position);
+        Console.Write('[');
+        Console.BackgroundColor = colorBar;
+        Console.Write(bar);
+        Console.BackgroundColor = defaultColor;
+
+        bar = "";
+
+        for (int i = valueBar; i < maxValueBar; i++)
+        {
+            bar += " ";
+        }
+
+        Console.Write(bar + ']');
+    }
+
+    static bool ControlSizeBar(int valueBar, int maxValueBar, ref string errorMassage)
+    {
+        int minimalValueBar = 0;
+
+        if (valueBar > maxValueBar)
+        {
+            errorMassage = $"Размер превышает допустимую норму {maxValueBar}";
             return false;
         }
-        else if (settingValuesBar < 0)
+        else if (valueBar < minimalValueBar)
         {
-            errorMessage = "Размер бара не может быть < 0";
+            errorMassage = $"Размер бара не может быть меньше{minimalValueBar}";
             return false;
         }
         else return true;

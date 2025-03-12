@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/operatorio/Документы/meCodes/lesson_projects/UIElement/UIElement.csproj": {}
+    "/home/operatorio/Документы/codes/UIElement/UIElement_/UIElement.csproj": {}
   },
   "projects": {
-    "/home/operatorio/Документы/meCodes/lesson_projects/UIElement/UIElement.csproj": {
+    "/home/operatorio/Документы/codes/UIElement/UIElement_/UIElement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/operatorio/Документы/meCodes/lesson_projects/UIElement/UIElement.csproj",
+        "projectUniqueName": "/home/operatorio/Документы/codes/UIElement/UIElement_/UIElement.csproj",
         "projectName": "UIElement",
-        "projectPath": "/home/operatorio/Документы/meCodes/lesson_projects/UIElement/UIElement.csproj",
+        "projectPath": "/home/operatorio/Документы/codes/UIElement/UIElement_/UIElement.csproj",
         "packagesPath": "/home/operatorio/.nuget/packages/",
-        "outputPath": "/home/operatorio/Документы/meCodes/lesson_projects/UIElement/obj/",
+        "outputPath": "/home/operatorio/Документы/codes/UIElement/UIElement_/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/operatorio/.nuget/NuGet/NuGet.Config"
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
