@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "/home/operatorio/.nuget/packages/": {}
+    "/home/casper/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/operatorio/Документы/codes/UIElement/UIElement_/UIElement.csproj",
+      "projectUniqueName": "/home/casper/Документы/Codes/UIElement/UIElement_/UIElement.csproj",
       "projectName": "UIElement",
-      "projectPath": "/home/operatorio/Документы/codes/UIElement/UIElement_/UIElement.csproj",
-      "packagesPath": "/home/operatorio/.nuget/packages/",
-      "outputPath": "/home/operatorio/Документы/codes/UIElement/UIElement_/obj/",
+      "projectPath": "/home/casper/Документы/Codes/UIElement/UIElement_/UIElement.csproj",
+      "packagesPath": "/home/casper/.nuget/packages/",
+      "outputPath": "/home/casper/Документы/Codes/UIElement/UIElement_/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/operatorio/.nuget/NuGet/NuGet.Config"
+        "/home/casper/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"

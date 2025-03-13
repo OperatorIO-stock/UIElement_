@@ -1,0 +1,15 @@
+/home/casper/Документы/Codes/UIElement/UIElement_/bin/Release/net9.0/UIElement
+/home/casper/Документы/Codes/UIElement/UIElement_/bin/Release/net9.0/UIElement.deps.json
+/home/casper/Документы/Codes/UIElement/UIElement_/bin/Release/net9.0/UIElement.runtimeconfig.json
+/home/casper/Документы/Codes/UIElement/UIElement_/bin/Release/net9.0/UIElement.dll
+/home/casper/Документы/Codes/UIElement/UIElement_/bin/Release/net9.0/UIElement.pdb
+/home/casper/Документы/Codes/UIElement/UIElement_/obj/Release/net9.0/UIElement.GeneratedMSBuildEditorConfig.editorconfig
+/home/casper/Документы/Codes/UIElement/UIElement_/obj/Release/net9.0/UIElement.AssemblyInfoInputs.cache
+/home/casper/Документы/Codes/UIElement/UIElement_/obj/Release/net9.0/UIElement.AssemblyInfo.cs
+/home/casper/Документы/Codes/UIElement/UIElement_/obj/Release/net9.0/UIElement.csproj.CoreCompileInputs.cache
+/home/casper/Документы/Codes/UIElement/UIElement_/obj/Release/net9.0/UIElement.sourcelink.json
+/home/casper/Документы/Codes/UIElement/UIElement_/obj/Release/net9.0/UIElement.dll
+/home/casper/Документы/Codes/UIElement/UIElement_/obj/Release/net9.0/refint/UIElement.dll
+/home/casper/Документы/Codes/UIElement/UIElement_/obj/Release/net9.0/UIElement.pdb
+/home/casper/Документы/Codes/UIElement/UIElement_/obj/Release/net9.0/UIElement.genruntimeconfig.cache
+/home/casper/Документы/Codes/UIElement/UIElement_/obj/Release/net9.0/ref/UIElement.dll

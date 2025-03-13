@@ -4,115 +4,79 @@ class Program
 {
     static void Main(string[] args)
     {
-        int maxValueBar = 10;
-        int healthBar = 0;
-        int manaBar = 0;
+        int maxLengthBar = 10;
 
-        bool waitAnswerUser = true;
+        int healthBarPercent = 25;
+        int manaBarPercent = 75;
 
-        ConsoleColor msgError = ConsoleColor.Red;
+        int healthPositionY = 0;
+        int manaPositionY = 1;
 
-        while(waitAnswerUser)
-        {
-            DrawBar(ref healthBar, maxValueBar, ConsoleColor.Green, msgError, '#', 0);
-            DrawBar(ref manaBar, maxValueBar, ConsoleColor.Blue, msgError, '@', 1);
+        char symbolHealth = '#';
+        char symbolMana = '@';
 
-            Console.SetCursorPosition(0, 5);
+        DrawBar(ref healthBarPercent, maxLengthBar, ConsoleColor.Green, symbolHealth, healthPositionY);
+        DrawBar(ref manaBarPercent, maxLengthBar, ConsoleColor.Blue, symbolMana, manaPositionY);
 
-            Console.WriteLine("Выберите значение для бара Health (или 'q' для выхода): ");
-            string healthInput = Console.ReadLine();
-
-            if (healthInput.ToLower() == "q")
-            {
-                waitAnswerUser = false;
-                continue;
-            }
-
-            Console.WriteLine("Выберите значение для бара Mana (или 'q' для выхода): ");
-            string manaInput = Console.ReadLine();
-
-            if (manaInput.ToLower() == "q")
-            {
-                waitAnswerUser = false;
-                continue;
-            }
-
-            try
-            {
-                healthBar = Convert.ToInt32(healthInput);
-                manaBar = Convert.ToInt32(manaInput);
-
-                string errorMessage = "";
-
-                if (!ControlSizeBar(healthBar, maxValueBar, ref errorMessage))
-                {
-                    Console.ForegroundColor = msgError;
-                    Console.WriteLine($"Ошибка Health: {errorMessage}");
-                    Console.ResetColor();
-                    healthBar = 0;
-                }
-
-                if (!ControlSizeBar(manaBar, maxValueBar, ref errorMessage))
-                {
-                    Console.ForegroundColor = msgError;
-                    Console.WriteLine($"Ошибка Mana: {errorMessage}");
-                    Console.ResetColor();
-                    manaBar = 0;
-                }
-            }
-            catch (FormatException)
-            {
-                Console.ForegroundColor = msgError;
-                Console.WriteLine("Ошибка: Введено некорректное значение. Используйте только числа.");
-                Console.ResetColor();
-            }
-
-            Console.ReadLine();
-            Console.Clear();
-        }
+        Console.ReadKey();
+        Console.Clear();
     }
 
-    static void DrawBar(ref int valueBar, int maxValueBar, ConsoleColor colorBar, ConsoleColor msgError, char symbolBar, int position)
+    static void DrawBar(ref int valueBarPercent, int maxLengthBar, ConsoleColor colorBar, char symbolBar, int positionY, int positionX = 0)
     {
+        int fillValue;
+        int voidValue;
+
+        string openBracket = "[";
+        string closeBracket = "]";
+        
         string bar = "";
+
+        char voidSymbol = ' ';
 
         ConsoleColor defaultColor = Console.BackgroundColor;
 
-        for (int i = 0; i < valueBar; i++)
+        fillValue = CalculatePercent(valueBarPercent, maxLengthBar);
+
+        voidValue = maxLengthBar - fillValue;
+
+        bar = DrawBarFill(fillValue, symbolBar);
+
+        Console.ForegroundColor = colorBar;
+        Console.SetCursorPosition(positionX, positionY);
+        Console.Write(openBracket + bar);
+
+        bar = DrawBarFill(voidValue, voidSymbol);
+
+        Console.WriteLine(bar + closeBracket);
+
+        Console.ForegroundColor = defaultColor;
+        Console.ResetColor();
+    }
+
+    static string DrawBarFill(int value, char symbolBar)
+    {
+        string bar = "";
+
+        for (int i = 0; i < value; i++)
         {
             bar += symbolBar;
         }
-
-        Console.SetCursorPosition(0, position);
-        Console.Write('[');
-        Console.BackgroundColor = colorBar;
-        Console.Write(bar);
-        Console.BackgroundColor = defaultColor;
-
-        bar = "";
-
-        for (int i = valueBar; i < maxValueBar; i++)
-        {
-            bar += " ";
-        }
-
-        Console.Write(bar + ']');
+        return bar;
     }
 
-    static bool ControlSizeBar(int valueBar, int maxValueBar, ref string errorMassage)
+    static int CalculatePercent(int valueBarPercent, int maxLengthBar)
     {
-        int minimalValueBar = 0;
+        int fillValue;
+        int maxPercent = 100;
 
-        if (valueBar > maxValueBar)
+        fillValue = valueBarPercent * maxLengthBar / maxPercent;
+
+        if (fillValue > maxLengthBar)
         {
-            errorMassage = $"Размер превышает допустимую норму {maxValueBar}";
-            return false;
+            fillValue = maxLengthBar;
         }
-        else if (valueBar < minimalValueBar)
-        {
-            errorMassage = $"Размер бара не может быть меньше{minimalValueBar}";
-            return false;
-        }
-        else return true;
+
+        return fillValue;
     }
 }
